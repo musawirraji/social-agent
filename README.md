@@ -3,11 +3,11 @@
 Reads last week's social posts, works out what performed and why, drafts next week's posts in our brand voice, **blocks any draft that's off-brand**, and sends the rest to Slack so a person can approve or reject them.
 
 ```
-posts.csv ──► 1. What worked? ──► 2. Draft 5 posts ──► 3. Brand check ──► 4. Slack ──► Approve / Reject
-               (plain code)        (Claude)            (code + Claude)      (webhook)      (n8n)
+posts.csv ──► 1. What worked? ──► 2. Draft 5 posts ──► 3. Brand check ──► 4. Slack ──► Approve / Reject ──► ClickUp task
+               (plain code)        (Claude)            (code + Claude)      (webhook)      (n8n)               (approved only)
                                                               │
                                                               └──► blocked drafts, with the reason
-                        every run is logged to runs.json
+              every run is logged to runs.json · every human decision to an n8n data table
 ```
 
 ## Who does what
@@ -74,8 +74,9 @@ Slack buttons need somewhere to send the click. That's n8n.
 1. In n8n, create a **Data table** called `social_agent_decisions` with these columns: `runId` (String), `draftId` (String), `decision` (String), `by` (String), `at` (Date).
 2. **Workflows** → **Import from file** → choose `n8n/slack-approval.json`.
 3. Open the **Log decision** node and pick your `social_agent_decisions` table (the file points to the original builder's table).
-4. Click the **Slack button clicked** node and copy the **Production URL**.
-5. **Publish** the workflow (top right). Publish again after any change, or Slack keeps using the old version.
+4. Open the **Create ClickUp task** node, add your ClickUp API token as a credential (in ClickUp: **Settings → Apps → API Token**), and pick the list approved posts should go to (e.g. **Social → Approved posts**).
+5. Click the **Slack button clicked** node and copy the **Production URL**.
+6. **Publish** the workflow (top right). Publish again after any change, or Slack keeps using the old version.
 
 n8n needs to be reachable from the internet for Slack to reach it. n8n Cloud works out of the box.
 
@@ -93,6 +94,8 @@ npm start
 ```
 
 Passing drafts arrive in your Slack channel. Click **Approve** or **Reject** and the message updates to show who decided, and when. The decision is also saved as a row in the `social_agent_decisions` data table in n8n, with the `runId` and `draftId` that link it back to the run in `runs.json`.
+
+Approved posts become a **ClickUp task** with the full post text, anything still to fill in (like a registration link), and the post date as the due date. Whoever publishes works from that list. Rejected posts don't create a task.
 
 ### 7. Run it every week automatically (GitHub Actions)
 
@@ -177,7 +180,8 @@ Failed runs are logged too, with the error, so there's always a record.
 ## Before relying on this in production
 
 - **Verify Slack's signature** in n8n so only Slack can trigger approvals.
-- **Send approvals where the team already works** (e.g. create a ClickUp task) by adding a node after **Read decision** in n8n. It already outputs `runId`, `draftId`, the decision, who made it and when.
+- **Ask for a reason on Reject** and feed the reasons into next week's drafting, so the agent learns from what the team turns down.
+- **Stop repeats across weeks** by giving the drafter the last few weeks of approved posts.
 - **Keep the repo copy of the workflow in sync**: after changing the workflow in n8n, use **⋯ → Download** and save it over `n8n/slack-approval.json`.
 - **Schedule it**: a weekly n8n Schedule trigger or cron job running `npm start`.
 - **Connect real data**: swap the CSV for the platforms' analytics exports or APIs.

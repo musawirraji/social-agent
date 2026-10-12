@@ -44,8 +44,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        704,
-        0
+        512,
+        -48
       ]
     },
     {
@@ -127,11 +127,74 @@
       "type": "n8n-nodes-base.dataTable",
       "typeVersion": 1.1,
       "position": [
-        576,
-        192
+        528,
+        160
       ],
       "id": "fdbe8501-e4ad-4213-871c-19f61f8cb65b",
       "name": "Log decision"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4f9be8dd-a3f5-46ea-ac61-4e8a577e2e04",
+              "leftValue": "={{ $json.decision.decision }}",
+              "rightValue": "approved",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        -240
+      ],
+      "id": "e32a3dd8-bda8-4a22-909d-c9c4ecb6cbe9",
+      "name": "Approved"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "team": "1200440000020603",
+        "space": "1200440000087894",
+        "folderless": true,
+        "list": "1200440000111413",
+        "name": "={{ $json.decision.platform }} post · {{ $json.decision.date }}",
+        "additionalFields": {
+          "content": "={{ [$json.decision.text, '', 'Fill before posting: ' + ($json.decision.fillBeforePosting.join(', ') || 'nothing'), 'Approved by ' + $json.decision.by + ' · run ' + $json.decision.runId + ' / ' + $json.decision.draftId].join('\\n') }}",
+          "dueDate": "={{ $json.decision.date }}",
+          "tags": "={{ $json.decision.platform }}"
+        }
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -311.1224297918508
+      ],
+      "id": "dd953a39-3c22-4b54-91a0-d87c38404b7b",
+      "name": "Create ClickUp task",
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "GU0HD8Oe1VzVngqF",
+          "name": "ClickUp account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -151,12 +214,17 @@
       "main": [
         [
           {
-            "node": "Log decision",
+            "node": "Approved",
             "type": "main",
             "index": 0
           },
           {
             "node": "Update Slack message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log decision",
             "type": "main",
             "index": 0
           }
@@ -167,6 +235,17 @@
       "main": [
         []
       ]
+    },
+    "Approved": {
+      "main": [
+        [
+          {
+            "node": "Create ClickUp task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": true,
@@ -174,8 +253,9 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "7648e7a8-a8be-4125-981b-279948d290b4",
+  "versionId": "71ce0a50-b28d-4dca-b161-8039f6e0003d",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "92d126c18e1e6e899eb3f67798b95266ee67055481c18d731502eec889ccaa53"
   },
   "nodeGroups": [],
