@@ -1,0 +1,51 @@
+name: Weekly social drafts
+
+on:
+  # Mondays at 13:00 UTC (8am Eastern in winter, 9am in summer).
+  schedule:
+    - cron: "0 13 * * 1"
+  # Adds a "Run workflow" button on GitHub so anyone can run it on demand.
+  workflow_dispatch:
+    inputs:
+      send_to_slack:
+        description: "Send passing drafts to Slack"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write # to save runs.json back to the repo
+
+concurrency: social-agent
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # If the brand checker itself is broken, stop before drafting anything.
+      - name: Check the checker
+        run: npm run eval
+
+      - name: Run the agent
+        run: npm start -- ${{ github.event_name == 'workflow_dispatch' && !inputs.send_to_slack && '--no-slack' || '' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # Runs even if the agent failed, so failed runs are logged too.
+      - name: Save the run log
+        if: always()
+        run: |
+          git config user.name "social-agent"
+          git config user.email "social-agent@users.noreply.github.com"
+          git add runs.json
+          git diff --cached --quiet || git commit -m "Log run $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push

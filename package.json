@@ -1,0 +1,28 @@
+{
+  "name": "social-agent",
+  "version": "1.0.0",
+  "description": "Reads last week's social posts, drafts next week's, blocks off-brand drafts, sends the rest to Slack for approval.",
+  "scripts": {
+    "start": "tsx src/run.ts",
+    "start:no-slack": "tsx src/run.ts --no-slack",
+    "drift": "tsx src/drift.ts",
+    "eval": "tsx src/eval-test.ts",
+    "eval:voice": "tsx src/eval-test.ts --with-voice",
+    "typecheck": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "dotenv": "^18.0.7",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "type": "module",
+  "private": true
+}

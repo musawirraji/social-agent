@@ -1,0 +1,184 @@
+{
+  "name": "social-agent: Slack approvals",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "social-agent-approval",
+        "options": {}
+      },
+      "id": "66cc3adf-e7b2-425b-ae07-964e294f5fdc",
+      "name": "Slack button clicked",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "social-agent-approval"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Slack sends the click as a form field called `payload` (a JSON string).\nconst p = JSON.parse($input.first().json.body.payload);\nconst action = p.actions[0];\nconst draft = JSON.parse(action.value);\nconst approved = action.action_id === 'approve_draft';\nconst when = new Date().toISOString().replace('T', ' ').slice(0, 16) + ' UTC';\n\n// The post text is the quoted \"post\" block. Strip the \"> \" quoting and Slack's escaping.\nconst postBlock = p.message.blocks.find((b) => b.block_id === 'post');\nconst text = (postBlock?.text?.text ?? '')\n  .split('\\n')\n  .map((line) => line.replace(/^(>|&gt;)\\s?/, ''))\n  .join('\\n')\n  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');\n\n// Keep the original message, swap the buttons for the decision.\nconst blocks = p.message.blocks\n  .filter((b) => b.type !== 'actions')\n  .concat({\n    type: 'context',\n    elements: [{ type: 'mrkdwn', text: `${approved ? ':white_check_mark: *Approved*' : ':x: *Rejected*'} by <@${p.user.id}> · ${when}` }],\n  });\n\nreturn [{\n  json: {\n    response_url: p.response_url,\n    message: { replace_original: true, text: p.message.text, blocks },\n    decision: {\n      runId: draft.runId,\n      draftId: draft.draftId,\n      platform: draft.platform ?? '',\n      date: draft.date ?? '',\n      text,\n      fillBeforePosting: draft.fillBeforePosting ?? [],\n      decision: approved ? 'approved' : 'rejected',\n      by: p.user.username || p.user.name || p.user.id,\n      at: new Date().toISOString(),\n    },\n  },\n}];"
+      },
+      "id": "e17502b3-678b-4abd-9579-ffc08f73fd06",
+      "name": "Read decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.response_url }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.message) }}",
+        "options": {}
+      },
+      "id": "d53aefaf-e715-4471-947f-0198bce15db4",
+      "name": "Update Slack message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "5AvT1ad0aOB0JRkc",
+          "mode": "list",
+          "cachedResultName": "social_agent_decisions",
+          "cachedResultUrl": "/projects/8PETsU8BRk9umbfy/datatables/5AvT1ad0aOB0JRkc"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "runId": "={{ $json.decision.runId }}",
+            "draftId": "={{ $json.decision.draftId }}",
+            "decision": "={{ $json.decision.decision }}",
+            "by": "={{ $json.decision.by }}",
+            "at": "={{ $json.decision.at }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "runId",
+              "displayName": "runId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "draftId",
+              "displayName": "draftId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "decision",
+              "displayName": "decision",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "by",
+              "displayName": "by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "at",
+              "displayName": "at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        192
+      ],
+      "id": "fdbe8501-e4ad-4213-871c-19f61f8cb65b",
+      "name": "Log decision"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Slack button clicked": {
+      "main": [
+        [
+          {
+            "node": "Read decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read decision": {
+      "main": [
+        [
+          {
+            "node": "Log decision",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update Slack message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log decision": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "7648e7a8-a8be-4125-981b-279948d290b4",
+  "meta": {
+    "instanceId": "92d126c18e1e6e899eb3f67798b95266ee67055481c18d731502eec889ccaa53"
+  },
+  "nodeGroups": [],
+  "id": "sfVI3YKFkXqr8vRD",
+  "tags": []
+}

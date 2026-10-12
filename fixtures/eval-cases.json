@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Banned word",
+    "platform": "x",
+    "text": "Our Cincinnati workshop is a game-changer for small businesses. Join us Thursday.",
+    "expect": "blocked",
+    "catches": "banned word"
+  },
+  {
+    "name": "Banned word, sneaky spelling",
+    "platform": "linkedin",
+    "text": "This cohort will Supercharge your team's AI skills. Sign up for the Ohio session.",
+    "expect": "blocked",
+    "catches": "banned word"
+  },
+  {
+    "name": "Too long for X",
+    "platform": "x",
+    "text": "Last Tuesday 42 small business owners in Cincinnati built their first AI assistant at our free workshop. Most had never opened an AI tool before. By lunch, a bakery owner had automated her catering inquiries and a barber had a booking assistant answering texts overnight. What would you automate first?",
+    "expect": "blocked",
+    "catches": "length"
+  },
+  {
+    "name": "Off-theme",
+    "platform": "x",
+    "text": "Happy Friday! What are you reading this weekend?",
+    "expect": "blocked",
+    "catches": "theme"
+  },
+  {
+    "name": "Hype without banned words",
+    "platform": "linkedin",
+    "text": "The biggest shift in business in 100 years is here and Ohio companies that wait will lose. Act now. Book your training today before your competitors do! 🚀🔥💯",
+    "expect": "blocked",
+    "catches": "voice",
+    "needsVoice": true
+  },
+  {
+    "name": "AI replaces people",
+    "platform": "instagram",
+    "text": "Why hire a receptionist? Our workshop shows Midwest businesses how AI can replace front-desk staff entirely.",
+    "expect": "blocked",
+    "catches": "voice",
+    "needsVoice": true
+  },
+  {
+    "name": "On-brand LinkedIn",
+    "platform": "linkedin",
+    "text": "Meet Marcus. He runs a two-chair barbershop in Dayton. After our free workshop, he set up an AI assistant that answers booking texts after hours. He says it gives him back about an hour every evening. Who in your community should be in the next cohort?",
+    "expect": "pass",
+    "needsVoice": true
+  },
+  {
+    "name": "On-brand X",
+    "platform": "x",
+    "text": "Meet Aisha, a first-time founder from Dayton. In a 45-minute hands-on session at MidwestCon, she built an AI assistant that answers her booking emails. No technical background needed. What would you build?",
+    "expect": "pass",
+    "needsVoice": true
+  },
+  {
+    "name": "On-brand with placeholders",
+    "platform": "linkedin",
+    "text": "Tom runs a heating and cooling company in Cincinnati. Customers used to wait until morning for a quote. After our free workshop, he set up an AI assistant that drafts quote replies overnight, and he checks each one before it goes out. Join our next hands-on session on [date] at [venue]. What's the first job you'd hand to an assistant like Tom's?",
+    "expect": "pass",
+    "needsVoice": true
+  }
+]
