@@ -634,5 +634,215 @@
       "inputTokens": 10273,
       "outputTokens": 3104
     }
+  },
+  {
+    "id": "20261012T083053",
+    "startedAt": "2026-10-12T08:30:53.184Z",
+    "status": "ok",
+    "model": "claude-opus-5-5",
+    "inputs": {
+      "postsFile": "data/posts.csv",
+      "postsSha": "2d2ee4e69053",
+      "brandSha": "188ec547178d",
+      "postCount": 15,
+      "weekStart": "2026-10-12"
+    },
+    "drafts": [
+      {
+        "date": "2026-10-12",
+        "platform": "linkedin",
+        "theme": "Practical skills",
+        "text": "Most people don't need more AI tools. They need someone to show them how to use the ones they already have.\n\nThat's what our 6-week cohort is built for. So far it has trained 300+ people across Ohio, Kentucky and Indiana, and 70% of them had no technical background when they started.\n\nShop owners, nonprofit staff, community leaders. People who were told this technology wasn't for them, now learning hands-on skills they use at work every week.\n\nIf you could learn one practical AI skill this fall, what would it be?",
+        "why": "Builds on last week's top LinkedIn post (9.5%), the training-over-tools take ending in a question, and adds the specific numbers and regional names that lifted engagement.",
+        "id": "d1",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 518,
+            "limit": 1300
+          },
+          "placeholders": []
+        },
+        "voice": {
+          "score": 4,
+          "reason": "Warm, plain, people-first, with specific numbers and places, and it ends with a genuine question rather than a sell. To reach a 5, name one real person or outcome (like the Denise example), and confirm the 300+ and 70% figures can be backed up before posting."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "skipped"
+      },
+      {
+        "date": "2026-10-13",
+        "platform": "x",
+        "theme": "The Midwest builds",
+        "text": "Tom runs a heating and cooling company in Cincinnati. An AI assistant drafts his quote replies overnight; he reviews each one before it's sent. Learn how at our free workshop, Thu 15 Oct, 6–8pm, Cincinnati Public Library. What would you hand off first?",
+        "why": "X was our weakest platform with hype-heavy posts, so this swaps hype for a named Cincinnati person and a question, the patterns behind our 7.7% and 8.3% engagement rates.",
+        "id": "d2",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 252,
+            "limit": 280
+          },
+          "placeholders": []
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific person, place, and outcome, written in plain words, and it keeps the human in charge because Tom reviews every reply. It ends with a warm invitation and a question, with no hype, so it can publish as-is."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "skipped"
+      },
+      {
+        "date": "2026-10-14",
+        "platform": "instagram",
+        "theme": "Access for everyone",
+        "text": "Meet Keisha. She runs a youth nonprofit in Covington, Kentucky.\n\nGrant reports used to take her two days. Now AI writes a first draft and she's done in half a day. She still reads and edits every single one, because the work and the voice are hers.\n\nThat's what AI is for: giving people like Keisha more time for the work that matters.\n\nWork at a nonprofit or community center? Join us this Saturday, 17 October, 10am–noon in Dayton for a free community AI session. No technical background needed. [venue and sign-up link]\n\nWhat would you do with a day and a half back? #AccessForEveryone",
+        "why": "Mirrors last week's 8.1% Instagram post about Denise in Dayton, a named person in our region showing what access looks like, and adds a question.",
+        "id": "d3",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 588,
+            "limit": 2200
+          },
+          "placeholders": [
+            "[venue and sign-up link]"
+          ]
+        },
+        "voice": {
+          "score": 4,
+          "reason": "Specific, warm and people-first: a named person, a real place, a concrete time saving, a clear note that she still edits everything, and a friendly invitation with one hashtag. Before posting, confirm that Keisha's story and the two-days-to-half-a-day figure are real, and check that 17 October actually falls on a Saturday this year."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "skipped"
+      },
+      {
+        "date": "2026-10-15",
+        "platform": "linkedin",
+        "theme": "Practical skills",
+        "text": "Tonight in Cincinnati: our free \"AI for Small Business\" workshop, 6–8pm at Cincinnati Public Library (Main Branch). 40 seats, no technical background needed. [sign-up link]\n\nCan't make it? Here's one thing you can try at your desk today.\n\nA prompt is simply the instruction you type into an AI tool. Copy this one:\n\n\"Here is an email from a customer. Write a friendly reply in under 100 words that answers their question and suggests a time to call.\"\n\nPaste in a real customer email, read what comes back, and edit it until it sounds like you. You stay in charge; the AI just gives you a first draft.\n\nTry it and tell us: what did you change?",
+        "why": "Follows our 8.5% LinkedIn post about the free Cincinnati workshop, combining a specific place and number with a reader question.",
+        "id": "d4",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 642,
+            "limit": 1300
+          },
+          "placeholders": [
+            "[sign-up link]"
+          ]
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific (place, time, 40 seats), explains 'prompt' in plain words, keeps people in charge of the AI, and ends with a warm question instead of a sales push. It can be published as-is once the sign-up link is filled in."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "skipped"
+      },
+      {
+        "date": "2026-10-16",
+        "platform": "x",
+        "theme": "The Midwest builds",
+        "text": "MidwestCon speaker applications close Friday 30 October. We especially want first-time speakers from Ohio, Kentucky, Indiana and across the region. Never been on a stage? That's welcome here. What story would you tell? Apply: [application link]",
+        "why": "Applies the finding that posts naming our region and asking a question outperform, replacing the hype language that sank last week's X posts to around 1%.",
+        "id": "d5",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 244,
+            "limit": 280
+          },
+          "placeholders": [
+            "[application link]"
+          ]
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific about the event, deadline and region, warm and welcoming to first-timers, and it ends with an inviting question rather than a hard sell. The deadline is stated plainly rather than as pressure, so no tone rule is bent; publish as-is."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "skipped"
+      }
+    ],
+    "analysis": {
+      "overallRate": 0.059323181049069376,
+      "summary": "15 posts, overall engagement rate 5.9%.\n\nBest performers:\n1. 9.5% on linkedin: \"Hot take: most companies don't need more AI tools. They need people trained to use the ones they already have. Agree or disagree?\"\n2. 8.5% on linkedin: \"Last Tuesday, 42 small business owners in Cincinnati built their first AI assistant in our free workshop. Most had never opened an AI tool before. By noon, a bakery owner had automated her catering inquiries. What would you automate first?\"\n3. 8.1% on instagram: \"Meet Denise. She runs a community center in Dayton and now uses AI to translate event flyers into 4 languages. This is what access looks like.\"\n\nWorst performers:\n1. 0.9% on x: \"Leverage cutting-edge AI to unlock synergy across your workflows. Link in bio.\"\n2. 1.2% on x: \"AI is a game-changer for every business. Don't get left behind. #AI #Innovation\"\n3. 1.4% on instagram: \"Unlock the future of AI with us. The revolution starts now. 🚀🚀🚀\"\n\nBy platform: linkedin 7.1% (5 posts), instagram 5.9% (5 posts), x 4.0% (5 posts)\n\nWhy (patterns that moved engagement):\n- Uses a banned hype word: 1.3% with (4 posts) vs 7.3% without (11 posts)\n- Names a real place or person in our region: 7.7% with (7 posts) vs 3.9% without (8 posts)\n- Asks the reader a question: 8.3% with (5 posts) vs 4.7% without (10 posts)\n- Includes a specific number: 7.6% with (6 posts) vs 4.4% without (9 posts)\n- Short (under 100 characters): 4.1% with (8 posts) vs 7.3% without (7 posts)\n\nNote: 15 posts is a small sample. Treat these as signals, not proof."
+    },
+    "totals": {
+      "drafted": 5,
+      "passed": 5,
+      "blocked": 0,
+      "avgVoice": 4.6
+    },
+    "finishedAt": "2026-10-12T08:31:26.390Z",
+    "claude": {
+      "calls": 6,
+      "inputTokens": 10386,
+      "outputTokens": 3755
+    }
   }
 ]
