@@ -1465,5 +1465,215 @@
       "inputTokens": 10446,
       "outputTokens": 2758
     }
+  },
+  {
+    "id": "20261019T185249",
+    "startedAt": "2026-10-19T18:52:49.177Z",
+    "status": "ok",
+    "model": "claude-opus-5-5",
+    "inputs": {
+      "postsFile": "data/posts.csv",
+      "postsSha": "2d2ee4e69053",
+      "brandSha": "188ec547178d",
+      "postCount": 15,
+      "weekStart": "2026-10-12"
+    },
+    "drafts": [
+      {
+        "date": "2026-10-12",
+        "platform": "linkedin",
+        "theme": "Access for everyone",
+        "text": "Meet Keisha. She runs a youth nonprofit in Covington, Kentucky, and her grant reports used to take two full days. Now an AI tool drafts the first version, and she finishes the report in half a day.\n\nShe still reads and edits every single one, because the voice and the judgment are hers.\n\nThat's the part we want more people to see. AI didn't do Keisha's job. It gave her back a day and a half for the young people she serves.\n\nIf you run a nonprofit or community group, which report or form eats most of your week?",
+        "why": "Builds on the Denise and Cincinnati posts: naming a real person in our region (7.7% vs 3.9%), using a specific number, and ending with a question (8.3% vs 4.7%).",
+        "id": "d1",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 515,
+            "limit": 1300
+          },
+          "placeholders": []
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific, warm and people-first: it names a real person, place and outcome, says plainly that AI helped rather than replaced Keisha, and ends with an inviting question. Ready to publish, provided the two-days-to-half-a-day figure is confirmed with Keisha."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "posted"
+      },
+      {
+        "date": "2026-10-13",
+        "platform": "x",
+        "theme": "Practical skills",
+        "text": "Thursday 15 Oct, 6–8pm: free AI for Small Business workshop at Cincinnati Public Library (Main Branch). 40 seats, no technical background needed. Bring one task that eats your week. What would you hand off first? [registration link]",
+        "why": "Copies the pattern of the 8.5% Cincinnati workshop post (real place, specific number, closing question) to lift X, our weakest platform at 4.0%.",
+        "id": "d2",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 232,
+            "limit": 280
+          },
+          "placeholders": [
+            "[registration link]"
+          ]
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific (date, time, place, 40 seats), plain and warm, with no hype, and it ends with an inviting question. It frames AI as helping people with tasks rather than replacing them, so it is ready to publish."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "posted"
+      },
+      {
+        "date": "2026-10-14",
+        "platform": "instagram",
+        "theme": "Practical skills",
+        "text": "Meet Tom. He owns a heating and cooling company in Cincinnati. Overnight, an AI assistant (a tool that writes draft text from your instructions) prepares replies to quote requests. In the morning, Tom reviews each one before it's sent.\n\nWant to try something similar? Copy this prompt into any AI chat tool:\n\n\"Here is an email from a customer. Write a friendly reply in under 100 words that answers their question and suggests a time to call.\"\n\nPaste a real customer email underneath, then edit the draft so it sounds like you. Prefer to learn hands-on with others? Join our free workshop Thursday at Cincinnati Public Library.\n\nTry it this week and tell us: what did it get right, and what did you change?\n\n#SmallBusiness #Cincinnati",
+        "why": "Extends the 8.1% Denise post format on Instagram (a named local person and a concrete outcome) and adds a reader question, which averaged 8.3%.",
+        "id": "d3",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 734,
+            "limit": 2200
+          },
+          "placeholders": []
+        },
+        "voice": {
+          "score": 5,
+          "reason": "Specific (a named person, place and event), and it explains the AI term in plain words. It keeps people in control, offers a practical prompt and ends with a warm invitation, with no hype and only 2 hashtags. Ready to publish, provided Tom and the Thursday workshop details are real."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "posted"
+      },
+      {
+        "date": "2026-10-15",
+        "platform": "linkedin",
+        "theme": "The Midwest builds",
+        "text": "Hot take: the people who get the most from AI aren't always the most technical. Often, they're the ones who finally got trained.\n\nOur 6-week cohort has now trained 300+ people across Ohio, Kentucky and Indiana. 70% had no technical background when they started.\n\nOur belief: once you learn to write clear prompts (the plain-language instructions you give an AI tool), AI stops feeling like it's for someone else.\n\nThat's why we want the MidwestCon stage to look like our cohorts. Speaker applications close Friday 30 October, and we especially want first-time speakers from the region. You don't need to be an expert. You need a real story.\n\nAgree or disagree: who should be on stage when we talk about AI? [application link]",
+        "why": "Reuses the format of our top post (9.5% 'Hot take... Agree or disagree?') and adds specific numbers and regional names, both linked to higher engagement.",
+        "id": "d4",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "Practical skills",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 725,
+            "limit": 1300
+          },
+          "placeholders": [
+            "[application link]"
+          ]
+        },
+        "voice": {
+          "score": 4,
+          "reason": "On-brand: specific numbers and places, AI terms explained in plain words, people-first, and it ends with an open question rather than a sales pitch. Light polish only: 'Hot take' leans slightly clickbait, and the 300+ and 70% figures must be verified before posting."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "posted"
+      },
+      {
+        "date": "2026-10-16",
+        "platform": "x",
+        "theme": "Access for everyone",
+        "text": "Saturday 17 Oct, 10am–noon: free community AI session in Dayton for nonprofit and community-center staff. No technical background needed. Bring a task you'd like help with. Who on your team should come? [venue + registration link]",
+        "why": "Avoids the hype words behind our worst X posts (1.3% vs 7.3%) and uses a named place, specific times and a question instead.",
+        "id": "d5",
+        "checks": {
+          "bannedWords": {
+            "pass": true,
+            "found": []
+          },
+          "theme": {
+            "pass": true,
+            "matched": [
+              "Access for everyone",
+              "The Midwest builds"
+            ]
+          },
+          "length": {
+            "pass": true,
+            "chars": 230,
+            "limit": 280
+          },
+          "placeholders": [
+            "[venue + registration link]"
+          ]
+        },
+        "voice": {
+          "score": 4,
+          "reason": "Plain, warm and specific (date, time, city, audience), with no hype and an inviting question at the end. It names no real person or outcome, though, so it reads more like a notice than a story. Adding a past result or a named example would make it a 5."
+        },
+        "decision": "pass",
+        "reasons": [],
+        "slack": "posted"
+      }
+    ],
+    "analysis": {
+      "overallRate": 0.059323181049069376,
+      "summary": "15 posts, overall engagement rate 5.9%.\n\nBest performers:\n1. 9.5% on linkedin: \"Hot take: most companies don't need more AI tools. They need people trained to use the ones they already have. Agree or disagree?\"\n2. 8.5% on linkedin: \"Last Tuesday, 42 small business owners in Cincinnati built their first AI assistant in our free workshop. Most had never opened an AI tool before. By noon, a bakery owner had automated her catering inquiries. What would you automate first?\"\n3. 8.1% on instagram: \"Meet Denise. She runs a community center in Dayton and now uses AI to translate event flyers into 4 languages. This is what access looks like.\"\n\nWorst performers:\n1. 0.9% on x: \"Leverage cutting-edge AI to unlock synergy across your workflows. Link in bio.\"\n2. 1.2% on x: \"AI is a game-changer for every business. Don't get left behind. #AI #Innovation\"\n3. 1.4% on instagram: \"Unlock the future of AI with us. The revolution starts now. 🚀🚀🚀\"\n\nBy platform: linkedin 7.1% (5 posts), instagram 5.9% (5 posts), x 4.0% (5 posts)\n\nWhy (patterns that moved engagement):\n- Uses a banned hype word: 1.3% with (4 posts) vs 7.3% without (11 posts)\n- Names a real place or person in our region: 7.7% with (7 posts) vs 3.9% without (8 posts)\n- Asks the reader a question: 8.3% with (5 posts) vs 4.7% without (10 posts)\n- Includes a specific number: 7.6% with (6 posts) vs 4.4% without (9 posts)\n- Short (under 100 characters): 4.1% with (8 posts) vs 7.3% without (7 posts)\n\nNote: 15 posts is a small sample. Treat these as signals, not proof."
+    },
+    "totals": {
+      "drafted": 5,
+      "passed": 5,
+      "blocked": 0,
+      "avgVoice": 4.6
+    },
+    "finishedAt": "2026-10-19T18:53:29.888Z",
+    "claude": {
+      "calls": 6,
+      "inputTokens": 10434,
+      "outputTokens": 3811
+    }
   }
 ]
